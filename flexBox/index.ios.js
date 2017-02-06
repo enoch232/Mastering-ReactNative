@@ -11,21 +11,21 @@ import {
   Text,
   View
 } from 'react-native';
+import BoxModel from './src/components/BoxModel'
 
 export default class flexBox extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style = {styles.container} >
+        <View style = {styles.item} >
+          <Text></Text>
+        </View>
+        <View style = {[styles.item2, {flexShrink: 1}]} >
+          <Text></Text>
+        </View>
+        <View style = {[styles.item2, {flexShrink: 2}]} >
+          <Text></Text>
+        </View>
       </View>
     );
   }
@@ -34,20 +34,24 @@ export default class flexBox extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "stretch"
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  item: {
+    width: 100,
+    height: 100,
+    backgroundColor: "yellow",
+    borderWidth: 1,
+    borderColor: "green"
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  item2: {
+    width: 50,
+    height: 200,
+    backgroundColor: "yellow",
+    borderWidth: 1,
+    borderColor: "green"
+  }
+})
 
 AppRegistry.registerComponent('flexBox', () => flexBox);
