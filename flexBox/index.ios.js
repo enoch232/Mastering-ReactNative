@@ -9,23 +9,29 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Image
 } from 'react-native';
 import BoxModel from './src/components/BoxModel'
 
 export default class flexBox extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      height: 0,
+      width: 0
+    }
+    this._onLayoutChange = this._onLayoutChange.bind(this)
+  }
+  _onLayoutChange(event){
+    let { width, height } = event.nativeEvent.layout
+    this.setState({height: height, width: width})
+  }
   render() {
     return (
-      <View style = {styles.container} >
-        <View style = {styles.item} >
-          <Text></Text>
-        </View>
-        <View style = {[styles.item2, {flexShrink: 1}]} >
-          <Text></Text>
-        </View>
-        <View style = {[styles.item2, {flexShrink: 2}]} >
-          <Text></Text>
-        </View>
+      <View onLayout = {this._onLayoutChange} style = {{marginTop: 30}}>
+          <Text>Height: {this.state.height}</Text>
+          <Text>Width: {this.state.width}</Text>
       </View>
     );
   }
@@ -43,15 +49,9 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: "yellow",
     borderWidth: 1,
-    borderColor: "green"
+    borderColor: "green",
+    color: "blue"
   },
-  item2: {
-    width: 50,
-    height: 200,
-    backgroundColor: "yellow",
-    borderWidth: 1,
-    borderColor: "green"
-  }
 })
 
 AppRegistry.registerComponent('flexBox', () => flexBox);
