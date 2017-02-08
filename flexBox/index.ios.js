@@ -16,6 +16,7 @@ import {
 import BoxModel from './src/components/BoxModel'
 import AppText from './src/components/AppText'
 import BookList from './src/components/BookList'
+import Homescreen from './src/components/Homescreen'
 
 export default class flexBox extends Component {
   constructor(props){
@@ -59,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-AppRegistry.registerComponent('flexBox', () => flexBox);
+AppRegistry.registerComponent('flexBox', () => Homescreen);
