@@ -3,7 +3,9 @@ import {
   View,
   ListView,
   Modal,
-  Text
+  Text,
+  TouchableOpacity,
+  StyleSheet
 } from 'react-native'
 import AppText from "./AppText"
 import Book from "./Book"
@@ -28,9 +30,6 @@ export default class BookList extends Component {
       modalVisible: true
     })
   }
-  // sayHello(){
-  //   alert("hello")
-  // }
   onModalClose(){
     this.setState({
       modalVisible: false
@@ -41,7 +40,15 @@ export default class BookList extends Component {
       <Modal visible={this.state.modalVisible}
              onRequestClose = {this.onModalClose}
       >
-      <Text>Hello</Text>
+        <Text>Hello</Text>
+        <View style={styles.modalContent}>
+          <TouchableOpacity
+            onPress={this.onModalClose}
+            style={styles.closeButton}
+          >
+            <Text>Close</Text>
+          </TouchableOpacity>
+        </View>
       </Modal>
     )
   }
@@ -72,3 +79,16 @@ export default class BookList extends Component {
 BookList.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object)
 }
+const styles = StyleSheet.create({
+  modalContent: {
+     flex: 1,
+     justifyContent: 'center',
+     paddingTop: 20,
+     backgroundColor: globalstyles.BG_COLOR
+  },
+   closeButton: {
+     paddingVertical: 5,
+     paddingHorizontal: 10,
+     flexDirection: 'row'
+  }
+})
