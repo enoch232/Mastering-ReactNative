@@ -10,29 +10,20 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import BoxModel from './src/components/BoxModel'
+import AppText from './src/components/AppText'
+import BookList from './src/components/BookList'
 
 export default class flexBox extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      height: 0,
-      width: 0
-    }
-    this._onLayoutChange = this._onLayoutChange.bind(this)
-  }
-  _onLayoutChange(event){
-    let { width, height } = event.nativeEvent.layout
-    this.setState({height: height, width: width})
   }
   render() {
     return (
-      <View onLayout = {this._onLayoutChange} style = {{marginTop: 30}}>
-          <Text>Height: {this.state.height}</Text>
-          <Text>Width: {this.state.width}</Text>
-      </View>
+      <BookList books = {[{title: "First Book", author: "Enoch Ko"}, {title: "Second Book", author: "Jaemin Ko"}]}/>
     );
   }
 }
