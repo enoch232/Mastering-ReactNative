@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import {
   View,
-  ListView
+  ListView,
+  Modal,
+  Text
 } from 'react-native'
 import AppText from "./AppText"
 import Book from "./Book"
@@ -14,9 +16,35 @@ export default class BookList extends Component {
        rowHasChanged: (row1, row2) => row1.title !== row2.title
      })
      this.state = {
-       dataSource: this.ds.cloneWithRows(props.books)
+       dataSource: this.ds.cloneWithRows(props.books),
+       modalVisible: false
      }
-   }
+     this.renderRow = this.renderRow.bind(this)
+     this.onModalOpen = this.onModalOpen.bind(this)
+     this.onModalClose = this.onModalClose.bind(this)
+  }
+  onModalOpen(){
+    this.setState({
+      modalVisible: true
+    })
+  }
+  // sayHello(){
+  //   alert("hello")
+  // }
+  onModalClose(){
+    this.setState({
+      modalVisible: false
+    })
+  }
+  renderModal(){
+    return(
+      <Modal visible={this.state.modalVisible}
+             onRequestClose = {this.onModalClose}
+      >
+      <Text>Hello</Text>
+      </Modal>
+    )
+  }
   render(){
     return (
       <View>
@@ -24,6 +52,7 @@ export default class BookList extends Component {
              dataSource={this.state.dataSource}
              renderRow={this.renderRow}
              />
+        {this.renderModal()}
       </View>
     )
 
@@ -31,11 +60,11 @@ export default class BookList extends Component {
   renderRow(rowData, ...rest) {
      const index = parseInt(rest[1], 10);
      return (
-        <Book
-          {...rowData}
-          style = {globalstyles.COMMON_STYLES.book}
+        <Book style = {globalstyles.COMMON_STYLES.book}
+              onPress = {() => this.onModalOpen()}
+              {...rowData}
         />
-    );
+      )
   }
 
 }
