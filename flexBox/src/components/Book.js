@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PropTypes, Component } from 'react'
 import {
   View,
   Text
@@ -13,4 +13,9 @@ export default class Book extends Component {
       </View>
     )
   }
+}
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired
 }

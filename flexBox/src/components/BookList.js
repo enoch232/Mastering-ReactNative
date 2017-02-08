@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
   View,
   ListView
@@ -33,8 +33,13 @@ export default class BookList extends Component {
      return (
         <Book
           {...rowData}
+          style = {globalstyles.COMMON_STYLES.book}
         />
     );
   }
 
+}
+
+BookList.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.object)
 }
