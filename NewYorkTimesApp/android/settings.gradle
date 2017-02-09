@@ -1,0 +1,3 @@
+rootProject.name = 'NewYorkTimesApp'
+
+include ':app'
